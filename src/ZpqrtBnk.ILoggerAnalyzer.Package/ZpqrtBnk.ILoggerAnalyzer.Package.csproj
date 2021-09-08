@@ -1,0 +1,56 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <IncludeBuildOutput>false</IncludeBuildOutput>
+    <SuppressDependenciesWhenPacking>true</SuppressDependenciesWhenPacking>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <Title>ZpqrtBnk ILogger Analyzer</Title>
+    <PackageId>ZpqrtBnk.ILoggerAnalyzer</PackageId>
+    <PackageVersion>1.0.1</PackageVersion>
+    <Authors>ZpqrtBnk</Authors>
+    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/zpqrtbnk/ilogger-analyzers</PackageProjectUrl>
+    <PackageIcon>icon.png</PackageIcon>
+    <PackageProjectUrl>https://github.com/zpqrtbnk/ilogger-analyzers</PackageProjectUrl>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <Description>Analyze ILoggers at build time and raise warnings on expensive calls.</Description>
+    <Copyright>Copyright (C) 2021 ZpqrtBnk</Copyright>
+    <PackageTags>ZpqrtBnk.ILoggerAnalyzer, ILogger, analyzers</PackageTags>
+    <NoPackageAnalysis>true</NoPackageAnalysis>
+    <DevelopmentDependency>true</DevelopmentDependency>
+
+    <TargetsForTfmSpecificContentInPackage>$(TargetsForTfmSpecificContentInPackage);_AddAnalyzersToOutput</TargetsForTfmSpecificContentInPackage>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!--
+    <ProjectReference Include="..\ZpqrtBnk.ILoggerAnalyzer.CodeFixes\ZpqrtBnk.ILoggerAnalyzer.CodeFixes.csproj" />
+    -->
+    <ProjectReference Include="..\ZpqrtBnk.ILoggerAnalyzer\ZpqrtBnk.ILoggerAnalyzer.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="tools\*.ps1" CopyToOutputDirectory="Always" Pack="true" PackagePath="" />
+  </ItemGroup>
+
+  <Target Name="_AddAnalyzersToOutput">
+    <ItemGroup>
+      <TfmSpecificPackageFile Include="$(OutputPath)\ZpqrtBnk.ILoggerAnalyzer.dll" PackagePath="analyzers/dotnet/cs" />
+      <!--
+      <TfmSpecificPackageFile Include="$(OutputPath)\ZpqrtBnk.ILoggerAnalyzer.CodeFixes.dll" PackagePath="analyzers/dotnet/cs" />
+      -->
+    </ItemGroup>
+  </Target>
+
+  <ItemGroup>
+    <None Include="icon.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+  </ItemGroup>
+
+</Project>
